@@ -1,6 +1,7 @@
 # Jobs API Project
 
 :wave: Welcome to my Jobs API Project learning project! In this project, I've built a comprehensive API with various features and best practices. Here's a summary of what you'll find in this project:
+- Split this project: https://github.com/rafeyshah/node-express-api-learning-project
 - Admin can only create more admins and users
 - Entity (Job) contains all the relevant information related to job meanwhile it can be created using form filling or by parsing it from CSV. 
 
