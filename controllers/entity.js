@@ -36,6 +36,9 @@ exports.createEntity = async function (req, res) {
 
 exports.getEntities = async function (req, res) {
   try {
+    console.log("All Queries", req.query);
+    console.log("Page: ", req.query.page);
+    console.log("offset: ", req.query.off);
     const getAllEntities = await Entity.find({});
     res.json({
       msg: "Getting all entities",

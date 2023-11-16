@@ -56,9 +56,15 @@ exports.getUser = async function (req, res) {
           error: "Password Incorrect",
         });
       }
+    } else {
+      res.json({
+        error: `Error occurred: login not found`,
+      });
     }
   } catch (err) {
-    console.log("error", err);
+    res.json({
+      error: `Error occurred: ${err}`,
+    });
   }
 };
 

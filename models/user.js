@@ -37,9 +37,9 @@ function validateUser(genre) {
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(50).required(),
     password: Joi.string().min(5).max(50).required(),
-    image: Joi.string().min(5).max(50).required(),
-    isDeleted: Joi.boolean().required(),
-    role: Joi.string().min(1).max(50).required(),
+    image: Joi.string().min(5).max(50),
+    isDeleted: Joi.boolean(),
+    role: Joi.string().min(1).max(50),
   });
 
   return schema.validate(genre);
