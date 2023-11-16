@@ -70,11 +70,23 @@ exports.getUser = async function (req, res) {
 
 exports.getUsers = async function (req, res) {
   try {
-    const allUsers = await User.find({});
-    res.json({
-      msg: "All users in dashboard",
-      data: allUsers,
-    });
+    const page = req.query.page;
+    const off = req.query.off;
+    if (page && off) {
+      const allQueryUsers = await User.find({})
+        .skip(page * off)
+        .limit(off);
+      res.json({
+        msg: `Getting Entites of Page ${page} and Offset ${off}`,
+        data: allQueryUsers,
+      });
+    } else {
+      const allUsers = await User.find({});
+      res.json({
+        msg: "All users in dashboard || Query Parameters Found",
+        data: allUsers,
+      });
+    }
   } catch (err) {
     res.json({
       error: err,
