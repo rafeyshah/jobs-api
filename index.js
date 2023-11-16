@@ -2,6 +2,7 @@ const express = require("express");
 const log = require("morgan")("dev");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const userRoutes = require("./routes/user");
 const entityRoutes = require("./routes/entity");
@@ -15,6 +16,7 @@ const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
 db();
 dotenv.config();
+app.use(cors());
 app.use(log);
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);

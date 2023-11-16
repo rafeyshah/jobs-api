@@ -1,8 +1,11 @@
 # Jobs API Project
 
 :wave: Welcome to my Jobs API Project learning project! In this project, I've built a comprehensive API with various features and best practices. Here's a summary of what you'll find in this project:
+<<<<<<< HEAD
 - Admin can only create more admins and users
 - Entity (Job) contains all the relevant information related to job meanwhile it can be created using form filling or by parsing it from CSV. 
+=======
+>>>>>>> 573806b9500369f70a7825a8c942d92dd471c1c5
 
 ## Features
 
