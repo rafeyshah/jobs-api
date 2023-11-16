@@ -52,12 +52,12 @@ exports.getUser = async function (req, res) {
           token: token,
         });
       } else {
-        res.json({
+        res.status(400).json({
           error: "Password Incorrect",
         });
       }
     } else {
-      res.json({
+      res.status(400).json({
         error: `Error occurred: login not found`,
       });
     }
