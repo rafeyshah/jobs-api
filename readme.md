@@ -1,18 +1,18 @@
-# Node.js & Express API Learning Project
+# Jobs API Project
 
-:wave: Welcome to my Node.js and Express API learning project! In this project, I've built a comprehensive API with various features and best practices. Here's a summary of what you'll find in this project:
+:wave: Welcome to my Jobs API Project learning project! In this project, I've built a comprehensive API with various features and best practices. Here's a summary of what you'll find in this project:
+- Admin can only create more admins and users
+- Entity (Job) contains all the relevant information related to job meanwhile it can be created using form filling or by parsing it from CSV. 
 
 ## Features
 
-:clipboard: **CRUD Operations**: The API provides CRUD (Create, Read, Update, Delete) functionality for various resources, including Work, Group, Workers, User, and Entity.
+:clipboard: **CRUD Operations**: The API provides CRUD (Create, Read, Update, Delete) functionality for various resources, including User, and Entity (Job).
 
 :closed_lock_with_key: **Authentication & Authorization**: Implemented a secure authentication system with login and signup functionality. Users are authenticated and authorized to perform specific actions.
 
 :lock: **Password Hashing**: Passwords are securely hashed using the Bcrypt library, ensuring user data protection.
 
 :boom: **Validation with Joi**: Utilized the Joi library for input validation to ensure data integrity and security.
-
-:link: **Relationships Between Entities**: Established relationships and associations between different entities in the database.
 
 :arrows_counterclockwise: **Async/Await**: Refactored callback-based and promise-based code to use async/await for better code readability and maintainability.
 
