@@ -36,14 +36,25 @@ exports.createEntity = async function (req, res) {
 
 exports.getEntities = async function (req, res) {
   try {
-    console.log("All Queries", req.query);
     console.log("Page: ", req.query.page);
     console.log("offset: ", req.query.off);
-    const getAllEntities = await Entity.find({});
-    res.json({
-      msg: "Getting all entities",
-      data: getAllEntities,
-    });
+    const page = req.query.page;
+    const off = req.query.off;
+    if (page && off) {
+      const getQueryEntities = await Entity.find({})
+        .skip(page * off)
+        .limit(off);
+      res.json({
+        msg: `Getting Entites of Page ${page} and Offset ${off}`,
+        data: getQueryEntities,
+      });
+    } else {
+      const getAllEntities = await Entity.find({});
+      res.json({
+        msg: "Getting all entities || Didn't find query parameter",
+        data: getAllEntities,
+      });
+    }
   } catch (err) {
     res.json({
       error: err,
