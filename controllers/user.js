@@ -17,6 +17,7 @@ exports.createUser = async function (req, res) {
     image: req.body.image,
     isDeleted: req.body.isDeleted,
     role: req.body.role,
+    country: req.body.country.toUpperCase(),
   };
 
   try {

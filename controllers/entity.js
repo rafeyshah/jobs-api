@@ -14,7 +14,7 @@ exports.createEntity = async function (req, res) {
   const entity = {
     companyName: req.body.companyName,
     website: req.body.website,
-    country: req.body.country,
+    country: req.body.country.toUpperCase(),
     jobType: req.body.jobType,
     linkedIn: req.body.linkedIn,
     contact: req.body.contact,
@@ -67,7 +67,7 @@ exports.updateEntity = async function (req, res) {
   const entity = {
     companyName: req.body.companyName,
     website: req.body.website,
-    country: req.body.country,
+    country: req.body.country.toUpperCase(),
     jobType: req.body.jobType,
     linkedIn: req.body.linkedIn,
     contact: req.body.contact,
@@ -114,7 +114,7 @@ exports.uploadCSV = async function (req, res) {
         const entity = {
           companyName: result.data.companyName,
           website: result.data.website,
-          country: result.data.country,
+          country: result.data.country.toUpperCase(),
           jobType: result.data.jobType,
           linkedIn: result.data.linkedIn,
           contact: result.data.contact,

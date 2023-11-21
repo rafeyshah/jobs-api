@@ -26,6 +26,9 @@ const userSchema = new Schema(
       type: Boolean,
     },
     role: userRoles,
+    country: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -40,6 +43,7 @@ function validateUser(genre) {
     image: Joi.string().min(5).max(50),
     isDeleted: Joi.boolean(),
     role: Joi.string().min(1).max(50),
+    country: Joi.string().min(1).max(50).required(),
   });
 
   return schema.validate(genre);
