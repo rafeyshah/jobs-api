@@ -19,6 +19,7 @@ exports.createEntity = async function (req, res) {
     linkedIn: req.body.linkedIn,
     contact: req.body.contact,
     additionalNotes: req.body.additionalNotes,
+    clientResponse: req.body.clientResponse,
   };
 
   try {
@@ -71,6 +72,7 @@ exports.updateEntity = async function (req, res) {
     linkedIn: req.body.linkedIn,
     contact: req.body.contact,
     additionalNotes: req.body.additionalNotes,
+    clientResponse: req.body.clientResponse,
   };
   try {
     const updatedEntity = await Entity.findByIdAndUpdate(req.params.id, entity);
@@ -117,6 +119,7 @@ exports.uploadCSV = async function (req, res) {
           linkedIn: result.data.linkedIn,
           contact: result.data.contact,
           additionalNotes: result.data.additionalNotes,
+          clientResponse: result.data.clientResponse,
         };
 
         const newlyCreatedEntity = await Entity.create(entity);

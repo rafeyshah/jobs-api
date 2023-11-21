@@ -29,6 +29,9 @@ const entitySchema = new Schema(
     additionalNotes: {
       type: String,
     },
+    clientResponse: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -44,6 +47,7 @@ function validateGroup(genre) {
     linkedIn: Joi.string().min(5).max(50).required(),
     contact: Joi.string().min(5).max(50).required(),
     additionalNotes: Joi.string().min(5).max(50).required(),
+    clientResponse: Joi.string().min(5).max(50).required(),
   });
 
   return schema.validate(genre);
