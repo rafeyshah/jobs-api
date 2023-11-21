@@ -67,7 +67,7 @@ exports.updateEntity = async function (req, res) {
   const entity = {
     companyName: req.body.companyName,
     website: req.body.website,
-    country: req.body.country.toUpperCase(),
+    country: req.body.country,
     jobType: req.body.jobType,
     linkedIn: req.body.linkedIn,
     contact: req.body.contact,
