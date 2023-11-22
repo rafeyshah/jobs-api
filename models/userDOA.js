@@ -14,6 +14,10 @@ userSchema.statics = {
   getByName: async function (query) {
     await this.find(query);
   },
+
+  update: async function (query, updateData) {
+    await this.findOneAndUpdate(query, { $set: updateData }, { new: true });
+  },
 };
 
 const workModel = mongoose.model("users", userSchema);

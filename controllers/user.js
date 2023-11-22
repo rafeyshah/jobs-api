@@ -15,7 +15,7 @@ exports.createUser = async function (req, res) {
     password: await bcrypt.hash(req.body.password, 10),
     userId: req.body.userId,
     image: req.body.image,
-    isDeleted: req.body.isDeleted,
+    isDeleted: false,
     role: req.body.role,
     country: req.body.country.toUpperCase(),
   };
@@ -74,7 +74,7 @@ exports.getUsers = async function (req, res) {
     const page = req.query.page;
     const off = req.query.off;
     if (page && off) {
-      const allQueryUsers = await User.find({})
+      const allQueryUsers = await User.find({ isDeleted: false })
         .skip(page * off)
         .limit(off);
       res.json({
@@ -82,12 +82,30 @@ exports.getUsers = async function (req, res) {
         data: allQueryUsers,
       });
     } else {
-      const allUsers = await User.find({});
+      const allUsers = await User.find({ isDeleted: false });
       res.json({
         msg: "All users in dashboard || Query Parameters Found",
         data: allUsers,
       });
     }
+  } catch (err) {
+    res.json({
+      error: err,
+    });
+  }
+};
+
+exports.deleteUser = async function (req, res) {
+  try {
+    console.log(req.params.id);
+    const deletedUser = await User.findByIdAndUpdate(req.params.id, {
+      isDeleted: true,
+    });
+    console.log(deletedUser);
+    res.json({
+      msg: "Deleting User",
+      data: "isDeleted: true",
+    });
   } catch (err) {
     res.json({
       error: err,
