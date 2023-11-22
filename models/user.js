@@ -7,12 +7,10 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      unique: false,
       required: true,
     },
     email: {
       type: String,
-      unique: true,
       required: true,
     },
     password: {
@@ -37,10 +35,10 @@ const userSchema = new Schema(
 
 function validateUser(genre) {
   const schema = Joi.object({
-    name: Joi.string().min(5).max(50).required(),
-    email: Joi.string().min(5).max(50).required(),
+    name: Joi.string().min(2).max(50).required(),
+    email: Joi.string().min(2).max(50).required(),
     password: Joi.string().min(5).max(50).required(),
-    image: Joi.string().min(5).max(50),
+    image: Joi.string().min(1).max(50),
     isDeleted: Joi.boolean(),
     role: Joi.string().min(1).max(50),
     country: Joi.string().min(1).max(50).required(),

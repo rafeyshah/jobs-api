@@ -20,14 +20,26 @@ exports.createUser = async function (req, res) {
     country: req.body.country.toUpperCase(),
   };
 
+  let userExists = null;
   try {
-    const newlyCreatedUser = await User.create(user);
-    res.json({
-      msg: "Signup Successfully",
-      body: user,
-    });
+    const findFromExistedUser = await User.findOne({ email: user.email }).then(
+      (existUser) => {
+        userExists = existUser;
+      }
+    );
+    console.log("User exists: ", userExists);
+    if (!userExists || (userExists && userExists.isDeleted === true)) {
+      console.log("Inside");
+      const newlyCreatedUser = await User.create(user);
+      res.json({
+        msg: "Signup Successfully",
+        body: user,
+      });
+    }
+    console.log("Outside");
   } catch (ex) {
-    res.json({
+    res.status(400).json({
+      message: "User Already Exists || Check Error Below",
       error: ex,
     });
   }
