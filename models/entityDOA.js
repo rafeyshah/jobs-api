@@ -7,7 +7,11 @@ entitySchema.statics = {
     await work.save();
   },
 
-  get: async function (query) {
+  getEntities: async function (query) {
+    await this.find(query);
+  },
+
+  getSingleEntity: async function (query) {
     await this.find(query);
   },
 
@@ -17,10 +21,6 @@ entitySchema.statics = {
 
   delete: async function (query) {
     await this.findOneAndDelete(query);
-  },
-
-  getCountries: async function (query) {
-    await this.find(query);
   },
 
   upload: async function (sample) {
