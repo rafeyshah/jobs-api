@@ -112,3 +112,28 @@ exports.deleteUser = async function (req, res) {
     });
   }
 };
+
+exports.updateUser = async function (req, res) {
+  const user = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    userId: req.body.userId,
+    image: req.body.image,
+    isDeleted: false,
+    role: req.body.role,
+    country: req.body.country,
+  };
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, user);
+    res.json({
+      msg: "Updating User",
+      data: user,
+    });
+  } catch (err) {
+    res.json({
+      error: err,
+    });
+  }
+};

@@ -15,6 +15,10 @@ userSchema.statics = {
     await this.find(query);
   },
 
+  delete: async function (query, updateData) {
+    await this.findOneAndUpdate(query, { $set: updateData }, { new: true });
+  },
+
   update: async function (query, updateData) {
     await this.findOneAndUpdate(query, { $set: updateData }, { new: true });
   },
