@@ -95,6 +95,20 @@ exports.getUsers = async function (req, res) {
   }
 };
 
+exports.getSingleUser = async function (req, res) {
+  try {
+    const getSingleUser = await User.findById(req.params.id);
+    res.json({
+      msg: "Fetching single user...",
+      data: getSingleUser,
+    });
+  } catch (err) {
+    res.json({
+      error: err,
+    });
+  }
+};
+
 exports.deleteUser = async function (req, res) {
   try {
     console.log(req.params.id);

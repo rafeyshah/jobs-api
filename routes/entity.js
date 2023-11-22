@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post("/", authentication, entityController.createEntity);
 router.get("/", authentication, entityController.getEntities);
+router.get("/:id", authentication, entityController.getSingleEntity);
 router.patch("/:id", authentication, entityController.updateEntity);
 router.delete("/:id", authentication, entityController.removeEntity);
 

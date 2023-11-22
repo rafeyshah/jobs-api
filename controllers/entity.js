@@ -63,6 +63,20 @@ exports.getEntities = async function (req, res) {
   }
 };
 
+exports.getSingleEntity = async function (req, res) {
+  try {
+    const getSingleEntity = await Entity.findById(req.params.id);
+    res.json({
+      msg: "Fetching single entity...",
+      data: getSingleEntity,
+    });
+  } catch (err) {
+    res.json({
+      error: err,
+    });
+  }
+};
+
 exports.updateEntity = async function (req, res) {
   const entity = {
     companyName: req.body.companyName,
