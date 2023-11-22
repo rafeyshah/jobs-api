@@ -11,8 +11,18 @@ router.post(
   userController.createUser
 );
 router.post("/login", userController.getUser);
-router.post("/users/:id", userController.deleteUser);
-router.patch("/users/:id", userController.updateUser);
+router.delete(
+  "/users/:id",
+  authentication,
+  authorization("ADMIN"),
+  userController.deleteUser
+);
+router.patch(
+  "/users/:id",
+  authentication,
+  authorization("ADMIN"),
+  userController.updateUser
+);
 router.get("/users", userController.getUsers);
 router.get("/users/:id", userController.getSingleUser);
 module.exports = router;
