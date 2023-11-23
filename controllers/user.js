@@ -54,6 +54,7 @@ exports.getUser = async function (req, res) {
     const login = await User.findOne({
       email: req.body.email,
     });
+    console.log("User: ", login);
     if (login) {
       const password_valid = await bcrypt.compare(
         req.body.password,
@@ -67,6 +68,7 @@ exports.getUser = async function (req, res) {
         res.json({
           msg: `${req.body.email} successfully logged in`,
           token: token,
+          user: login,
         });
       } else {
         res.status(400).json({

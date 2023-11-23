@@ -63,6 +63,35 @@ exports.getEntities = async function (req, res) {
   }
 };
 
+exports.getAppEntities = async function (req, res) {
+  try {
+    console.log("User: ", req.user);
+    console.log("Page: ", req.query.page);
+    console.log("offset: ", req.query.off);
+    const page = req.query.page;
+    const off = req.query.off;
+    if (page && off) {
+      const getQueryEntities = await Entity.find({ country: req.user.country })
+        .skip(page * off)
+        .limit(off);
+      res.json({
+        msg: `Getting Entites of Page ${page} and Offset ${off}`,
+        data: getQueryEntities,
+      });
+    } else {
+      const getAllEntities = await Entity.find({ country: req.user.country });
+      res.json({
+        msg: "Getting all entities || Didn't find query parameter",
+        data: getAllEntities,
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: err,
+    });
+  }
+};
+
 exports.getSingleEntity = async function (req, res) {
   try {
     const getSingleEntity = await Entity.findById(req.params.id);
@@ -167,11 +196,11 @@ exports.fetchCountries = async function (req, res) {
         },
       },
     ]);
-    console.log("Array: ", result);
+    console.log("Array: ", result[0].countries);
 
     res.json({
       msg: "Fetching Countries",
-      data: result,
+      data: result[0].countries,
     });
   } catch (err) {
     res.json({

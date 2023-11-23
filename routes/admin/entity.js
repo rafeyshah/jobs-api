@@ -1,8 +1,8 @@
-const entityController = require("../controllers/entity");
+const entityController = require("../../controllers/entity");
 const express = require("express");
-const { authentication } = require("../middleware/protected");
+const { authentication } = require("../../middleware/protected");
 
-const upload = require("../middleware/upload");
+const upload = require("../../middleware/upload");
 const router = express.Router();
 
 router.post("/", authentication, entityController.createEntity);
