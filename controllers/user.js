@@ -155,12 +155,26 @@ exports.updateUser = async function (req, res) {
     country: req.body.country,
   };
 
+  let userExists = null;
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, user);
-    res.json({
-      msg: "Updating User",
-      data: user,
+    const findFromExistedUser = await User.findOne({
+      email: user.email,
+      isDeleted: false,
+    }).then((existUser) => {
+      userExists = existUser;
     });
+    console.log("User exists: ", userExists);
+    if (userExists && userExists.isDeleted === false) {
+      res.status(400).json({
+        msg: "Email Already Existed",
+      });
+    } else {
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, user);
+      res.json({
+        msg: "Updating User",
+        data: user,
+      });
+    }
   } catch (err) {
     res.json({
       error: err,
