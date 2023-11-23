@@ -35,6 +35,10 @@ exports.createUser = async function (req, res) {
         msg: "Signup Successfully",
         body: user,
       });
+    } else {
+      res.status(400).json({
+        message: "User already exists",
+      });
     }
     console.log("Outside");
   } catch (ex) {
